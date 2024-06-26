@@ -15,7 +15,7 @@ function App() {
         const res:number = add(string);
         setResult(res);
         }}>Add</button>
-      {result && <p>{result}</p>}
+      {result ? <p>{result}</p> : ''}
     </div>
     </>
   )
