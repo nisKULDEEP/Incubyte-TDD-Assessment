@@ -27,5 +27,19 @@ describe('StringCalculator', () => {
   test('handles new lines between numbers', () => {
     expect(calculator("1\n2,3")).toBe(6);
   });
+
+  test('supports different delimiters', () => {
+    expect(calculator("//;\n1;2")).toBe(3);
+    expect(calculator("//|\n1|2|3")).toBe(6);
+    expect(calculator("//***\n1***2***3")).toBe(6);
+  });
+
+  test('throws an exception for negative numbers', () => {
+    expect(() => calculator("1,-2,3")).toThrow("negative numbers not allowed: -2");
+  });
+
+  test('throws an exception with all negative numbers', () => {
+    expect(() => calculator("1,-2,3,-4")).toThrow("negative numbers not allowed: -2, -4");
+  });
 });
 
