@@ -2,9 +2,25 @@ const add = (number: string):number => {
 
     if(number === '') return 0;
     
-    const numberArray = number.split(',');
-    const sum = numberArray.reduce((a, b) => Number(a) + Number(b), 0);
-    return sum;
+    let delimiter = /,|\n/; // Default delimiters are comma and newline
+    let numberString = number;
+
+    // Check if there is a custom delimiter
+    if (number.startsWith("//")) {
+      const parts = number.split("\n", 2);
+      if (parts.length > 1) {
+        delimiter = new RegExp(parts[0].substring(2)); // Extract the custom delimiter
+        numberString = parts[1];
+      }
+    }
+
+    const numberArray = numberString
+      .split(delimiter)
+      .map((num) => parseInt(num, 10));
+
+  
+
+    return numberArray.reduce((sum, num) => sum + num, 0);
 
 }
 

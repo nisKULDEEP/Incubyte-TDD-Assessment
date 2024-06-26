@@ -19,4 +19,13 @@ describe('StringCalculator', () => {
   test('returns the sum for two numbers', () => {
     expect(calculator("1,2")).toBe(3);
   });
+
+  test('returns the sum for multiple numbers', () => {
+    expect(calculator("1,2,3,4,5")).toBe(15);
+  });
+  
+  test('handles new lines between numbers', () => {
+    expect(calculator("1\n2,3")).toBe(6);
+  });
 });
+
